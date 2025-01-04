@@ -1,0 +1,11 @@
+[project]
+name = "cpp-python-interop-demo"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["mujoco>=3.2.6", "pybind11>=2.13.6", "setuptools>=75.6.0"]
+
+[build-system]
+requires = ["setuptools>=75.6.0", "pybind11>=2.13.6", "mujoco>=3.2.6"]
+build-backend = "setuptools.build_meta"
