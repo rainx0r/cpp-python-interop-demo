@@ -31,12 +31,12 @@ def main():
         mujoco.mj_step(model, data)
         my_function(data)
 
+    print("Time taken (s):", time() - start_time)
     print("After 1_000_000 steps:")
     print("- qacc:", data.qacc[:])
     # print("- qvel:", data.qvel[:])
     # print("- qpos:", data.qpos[:])
     print("- time", data.time)
-    print("Time taken (s):", time() - start_time)
 
 
 if __name__ == "__main__":
