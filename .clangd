@@ -1,0 +1,2 @@
+CompileFlags:
+  Add: [-I.venv/lib/python3.13/site-packages/mujoco/include, -I.venv/lib/python3.13/site-packages/nanobind/include, -I.venv/lib/python3.13/site-packages/pybind11/include]
