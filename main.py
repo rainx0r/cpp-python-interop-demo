@@ -1,7 +1,13 @@
 # pyright: reportAttributeAccessIssue=false
+from time import time
+
 import mujoco
 import numpy as np
 from cpp_python_interop import my_function
+
+
+def my_function_py(data: mujoco._structs.MjData):
+    print(data.qacc[0] * 2)
 
 
 def main():
@@ -18,16 +24,19 @@ def main():
     data.mocap_pos[MOCAP_ID][:] = HAND_INIT_POS
     data.mocap_quat[MOCAP_ID][:] = HAND_INIT_QUAT
 
-    # simulate
-    mujoco.mj_step(model, data)
+    start_time = time()
 
-    print("After 1 step:")
+    for _ in range(1_000_000):
+        # simulate
+        mujoco.mj_step(model, data)
+        my_function(data)
+
+    print("After 1_000_000 steps:")
     print("- qacc:", data.qacc[:])
-    print("- qvel:", data.qvel[:])
-    print("- qpos:", data.qpos[:])
+    # print("- qvel:", data.qvel[:])
+    # print("- qpos:", data.qpos[:])
     print("- time", data.time)
-
-    my_function(data)
+    print("Time taken (s):", time() - start_time)
 
 
 if __name__ == "__main__":

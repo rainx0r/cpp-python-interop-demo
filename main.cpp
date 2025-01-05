@@ -1,5 +1,6 @@
 #include <mujoco/mujoco.h>
 #include <iostream>
+#include <chrono>
 #include "custom_module.cpp"
 
 using namespace std;
@@ -28,17 +29,25 @@ int main(int argc, const char** argv) {
         d->mocap_quat[mocap_id * 4 + i] = HAND_INIT_QUAT[i];
     }
 
-    mj_step(m, d);
+    auto start_time = chrono::high_resolution_clock::now();
 
-    cout << "After 1 step:" << "\n";
+    for (int i = 0; i < 1'000'000; ++i) {
+        mj_step(m, d);
+        my_function(d);
+    }
+
+    auto end_time = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed = end_time - start_time;
+
+    cout << "After 1_000_000 steps:" << endl;
     cout << "- qacc: [";
     for(int i = 0; i < 9; ++i) {
         cout << d->qacc[i] << " ";
     }
-    cout << "]" << "\n";
-    cout << "- time " << d->time << "\n"; 
+    cout << "]" << endl;
+    cout << "- time " << d->time << endl;
 
-    my_function(d);
+    cout << "Time taken (s): " << elapsed.count() << endl;
 
     mj_deleteData(d);
     mj_deleteModel(m);
