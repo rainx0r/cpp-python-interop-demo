@@ -3,9 +3,8 @@
 
 using namespace std;
 
-void my_function() {
-    cout << "Hello world" << "\n";
-    /*cout << data->qpos[0] << "\n";*/
-    /*cout << data->qpos[2] << "\n";*/
-    /*cout << data->qpos[3] << "\n";*/
+void my_function(mjData* data) {
+    cout << data->qpos[0] << "\n";
+    cout << data->qpos[2] << "\n";
+    cout << data->qpos[3] << "\n";
 }

@@ -27,8 +27,7 @@ def main():
     print("- qpos:", data.qpos[:])
     print("- time", data.time)
 
-    # my_function(data)
-    my_function()
+    my_function(data)
 
 
 if __name__ == "__main__":
