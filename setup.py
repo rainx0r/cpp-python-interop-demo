@@ -9,9 +9,6 @@ ext_modules = [
         "cpp_python_interop",
         ["custom_module_bindings.cpp"],
         include_dirs=[pathlib.Path(mujoco.HEADERS_DIR).parent],
-        # library_dirs=mujoco.__path__,
-        # libraries=['mujoco'],
-        # extra_compile_args=['-std=c++11'],
     ),
 ]
 
